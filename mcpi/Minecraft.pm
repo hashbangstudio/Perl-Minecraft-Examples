@@ -22,6 +22,15 @@ sub intFloor{
     return @elements;
 }
 
+sub getNumFromStatusBool{
+    my $boolean = shift;
+    if ($boolean == 1 || lc($boolean) eq 'true'){
+        return 1;
+    }else{
+        return 0;
+    }
+}
+
 package CmdPositioner;
 use Vec3;
 sub new{
@@ -65,8 +74,8 @@ sub setTilePos{
 sub setting{
     my ($self, $setting, $status)= @_;
     #Set a player setting (setting, status). keys: autojump
-    $status = $status || 0;
-    $self->{conn}->send($self->{pkg}. ".setting", $setting, $status);
+    $status = commonFuncs::getNumFromStatusBool($status);
+    $self->{conn}->send($self->{pkg}.".setting", $setting, $status);
 }
 
 package CmdEntity;
@@ -117,6 +126,11 @@ sub getTilePos{
 sub setTilePos{
     my $self = shift;
     return $self->{cmdpos}->setTilePos([], @_);
+}
+
+sub setting{
+    my $self = shift;
+    return $self->{cmdpos}->setting(@_);
 }
 
 package CmdCamera;
@@ -273,7 +287,7 @@ sub postToChat{
 sub setting{
     my ($self, $setting, $status)= @_;
     # Set a world setting (setting, status). keys: world_immutable, nametags_visible
-    $status = 0 if ($status != 1);
+    $status = commonFuncs::getNumFromStatusBool($status);
     $self->{conn}->send("world.setting", $setting, $status);
 }
 
