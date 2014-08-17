@@ -1,3 +1,5 @@
+#!/usr/bin/env perl
+
 #Tell perl to use strict mode
 use strict;
 # Tell perl where to find the minecraft api modules
@@ -17,12 +19,9 @@ my $mc = Minecraft::->create();
 
 # Get the position that the player is currently at
 my $playerPosition = $mc->player->getPos();
-#format the output so that is one decimal place
-my @coords = ($playerPosition->x, $playerPosition->y, $playerPosition->z);
-my @posn = map{sprintf("%.1f", $_)}  @coords;
 
-# create the output message as a string
-my $message = "You are at (".$posn[0].", ".$posn[1].", ".$posn[2].")";
+#format the output so that is one decimal place
+my $message = sprintf("You are at (%.1f, %.1f, %.1f)", $playerPosition->x, $playerPosition->y, $playerPosition->z) ;
       
 # print to the perl interpreter standard output (terminal  probably)
 print($message, "\n");
