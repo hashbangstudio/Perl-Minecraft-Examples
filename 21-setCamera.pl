@@ -1,3 +1,5 @@
+#!/usr/bin/env perl
+
 use strict;
 # We have to import the minecraft api module to do anything in the minecraft world
 use lib 'mcpi';

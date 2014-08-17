@@ -1,3 +1,5 @@
+#!/usr/bin/env perl
+
 use strict;
 #import the needed modules fo communication with minecraft world
 use lib 'mcpi';

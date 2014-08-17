@@ -1,3 +1,5 @@
+#!/usr/bin/env perl
+
 #Tell perl to use strict mode
 use strict;
 # Tell perl where to find the minecraft api modules

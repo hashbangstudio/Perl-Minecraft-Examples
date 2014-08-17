@@ -1,3 +1,5 @@
+#!/usr/bin/env perl
+
 use strict;
 use lib 'mcpi';
 use Minecraft;
