@@ -1,3 +1,5 @@
+#!/usr/bin/env perl
+
 use strict;
 use lib 'mcpi';
 use Minecraft;
@@ -14,7 +16,7 @@ my $mc = Minecraft::->create();
 my $playerPos = $mc->player->getTilePos();
 
 #create a message to send
-my $message = "You are at (".$playerPos->x.", ".$playerPos->z.")";
+my $message = "You are at (".$playerPos->x.", ".$playerPos->y.", ".$playerPos->z.")";
 print $message, "\n";
 # send message to the minecraft chat
 $mc->postToChat($message);
@@ -34,8 +36,9 @@ if ($numOfArguments == 2){
 
     # Set the position of the player
     $mc->player->setTilePos($newXpos, $newYpos, $newZpos);
-    #$mc->player->setPos($newXpos, $newYpos, $newZpos); # set actual position rather that Tile
-    $message = "You have been moved to (".$newXpos.",".$newZpos.")";
+    # Get the current position that the player is located at in the world
+    $playerPos = $mc->player->getTilePos();
+    $message = "You have been moved to  (".$playerPos->x.", ".$playerPos->y.", ".$playerPos->z.")";
 
     print $message, "\n";
     # send message to the minecraft chat
