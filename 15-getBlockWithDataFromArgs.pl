@@ -24,15 +24,18 @@ if ($numOfArgs == 3){
 }elsif($numOfArgs == 2){
      $xPos = int($ARGV[0]);
      $zPos = int($ARGV[1]);
-     # NOTE this is so that it gives the type of block that are stood on
+     #Get the block that would be stood on at this Horiz posn
      $yPos = $mc->getHeight($xPos, $zPos) - 1;
 
 }else{
     print("Number of arguments incorrect \n");
+    print("Expected 2 or 3 arguments but got $numOfArgs \n");
+    print("Usage with 3 args: perl script.pl xcoord ycoord zcoord\n");
+    print("Usage with 2 args: perl script.pl xcoord zcoord\n");
     exit();
 }
 
-# Get the type of block for the highest point in world
+# Get the type of block
 # This is done at the passed in coords
 my $blockAndData = $mc->getBlockWithData($xPos, $yPos , $zPos);
 

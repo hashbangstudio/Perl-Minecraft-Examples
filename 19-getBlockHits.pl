@@ -18,4 +18,5 @@ while(1){
         foreach(@hits){print "$_\n";}
         
     }
+    sleep(1)
 }

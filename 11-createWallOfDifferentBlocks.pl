@@ -34,7 +34,8 @@ foreach ((1..6)){
         # Create a block
         # If the id doesn't exist in the Minecraft world
         # The message will still be sent but no block will be created
-        $mc->setBlock($blockXposn, $blockYposn, $blockZposn, Block::->new($id));
+        #$mc->setBlock($blockXposn, $blockYposn, $blockZposn, Block::->new($id));#Alternative method
+        $mc->setBlock($blockXposn, $blockYposn, $blockZposn, $id);
         # Wait for 0.5 seconds
         sleep(0.5);
         # increment the id of the block to create

@@ -38,8 +38,8 @@ else{
 }
 
 my $height = $mc->getHeight($xPos, $zPos);
-my $message = "Height is $height";
+my $message = "Height of world is $height at ($xPos, $zPos)";
 print "\n$message\n";
 # send message to the minecraft chat
-$mc->postToChat("Height is $height");
+$mc->postToChat($message);
 

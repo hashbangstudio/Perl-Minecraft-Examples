@@ -30,7 +30,7 @@ foreach ((1..6)){
     foreach((1..10)){
         #increase the distance along the row that the block is placed at
         $blockXposn += 1;
-        print("Creating block at ", $blockXposn,", ", $blockYposn,", ", $blockZposn, "\n");
+        print("Creating block at ($blockXposn, $blockYposn, $blockZposn)\n");
         # Create a block
         $mc->setBlock($blockXposn, $blockYposn, $blockZposn, DIAMOND_BLOCK);
         # Wait for 0.5 seconds
