@@ -47,15 +47,12 @@ sub clone{
 
 sub add {
         my ($self, $rhs, $swap) = @_;
-        #print "adding vectors\n";
         my $c = $self->clone();
         return $c += $rhs;
 }
 
 sub iadd{
         my ($self, $rhs, $swap) = @_;
-        #print %$self;
-        #print %$rhs;
         $self->{xcoord} = $self->{xcoord} + $rhs->{xcoord};
         $self->{ycoord} = $self->{ycoord} + $rhs->{ycoord};
         $self->{zcoord} = $self->{zcoord} + $rhs->{zcoord};
@@ -64,7 +61,7 @@ sub iadd{
 
 sub length{
         my $self = shift;
-        return $self->lengthSqr ** .5;
+        return $self->lengthSqr ** 0.5;
 }
 
 sub lengthSqr{
@@ -104,11 +101,11 @@ sub iminus{
 sub compare{
         my ($self, $rhs, $swap) = @_;
         my $dx = $self->{xcoord} - $rhs->{xcoord};
-        if ($dx != 0){return $dx};
+        if ($dx != 0){return $dx;}
         my $dy = $self->{ycoord} - $rhs->{ycoord};
-        if ($dy != 0) {return $dy};
+        if ($dy != 0) {return $dy;}
         my $dz = $self->{zcoord} - $rhs->{zcoord};
-        if ($dz != 0){return $dz};
+        if ($dz != 0){return $dz;}
         return 0;
 }
 
