@@ -35,48 +35,52 @@ sub new {
         return $self;
 }
 
-#TODO replace this hack/bodge with a better function
-#need to check for all types of iterable and flatten those correctly
-sub flattenToString{
-    
-    my $text = "";
-    my $arrSize = @_;
-    my @data = @_;
-    if ($arrSize == 0){
-        $text = "";
-    }else{
-        my @indexesToDelete = [];
-        my $index = 0;
-        foreach(@data){
-            my $refText = ref($_);
-            if($refText eq "ARRAY"){
-                $_ = flattenToString(@$_);
-            }
-            $index++;
+sub flatten{
+    my @flatArray = ();
+    foreach my $el(@_){
+        my $refText = ref($el);
+        if($refText eq "ARRAY"){ 
+            push(@flatArray,  flatten(@{$el}));
+        }elsif($refText eq "REF"){
+            push(@flatArray, flatten($el));
+        }elsif($refText eq "SCALAR"){
+            push(@flatArray, $$el);
+        }else{
+            #Is a scalar or array so pass reference to function so know what type
+            push(@flatArray, flatten(\$el));
         }
-        undef $index;
-        $text = join (",", @data);
     }
-    #replace trailing and starting commas if they exist
-    $text =~ s/^,//;
-    $text =~ s/,$//;
-    return $text;
+    return @flatArray;
 }
-
+ 
+sub flattenToString{
+    my $arrSz = @_;
+    if($arrSz > 0){
+        #Remove empty strings and join together
+        return join(",", flatten(@_));
+    }else{
+        return "";
+    }
+}
 
 sub drain{
     my $self = shift;
     my $char = "";
     my $response = "";
-    my ($readable, $writeable, $errors)= IO::Select->select($self->{sel}, undef, undef, 0.1);
-    if (defined($readable)){
-        until($char eq "\n"){
-        #$self->{sock}->recv($char, 1);#alternative read method
-        sysread($self->{sock}, $char, 1);
-        $response .= $char;
-       }
+      
+    while(1){
+        my ($readable, $writeable, $errors)= IO::Select->select($self->{sel}, undef, undef, 0.05);
+        if (!defined($readable) || @$readable < 1){
+            last;
+        }
+        #$self->{sock}->recv($response, 1500);#alternative read method
+        sysread($self->{sock}, $response, 1500);
+        chomp($response);
+        my $e =  "Drained Data: $response\n";
+        $e .= "Last Message: $self->{lastSent}\n";
+        print { *STDERR } $e;
     }
-    return $response;
+    
 }
 
 sub send{
@@ -87,13 +91,20 @@ sub send{
     
     $self->drain();
     my $command = "$stem($msg)\n";
-    $self->{lastSent} = $command;
+    print "last sent = $command";
+    $self->{lastSent} = "$command";
     $self->{sock}->send($command);
 }
 
 sub receive{
     my $self = shift;
-    my $response = $self->drain();
+    my $response = $self->{sock}->getline();
+    chomp($response);
+    if ($response eq "Fail"){
+        print { *STDERR } "Failed = $self->{lastSent} \n";
+        die("Failed on command : $self->{lastSent}\n");
+    }
+    
     return $response;
 }
 
