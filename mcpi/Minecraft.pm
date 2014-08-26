@@ -60,7 +60,6 @@ sub setPos{
 sub getTilePos{
         my ($self, $id) = @_;
         my $response = $self->{conn}->send_and_receive($self->{pkg}.".getTile", $id);
-        my @coords =  split(",", $response);
         my $result = Vec3::->new(map(int, split(",", $response)));
         return $result;
 }
@@ -292,8 +291,11 @@ sub setting{
 }
 
 sub create{
-        my $address = "localhost";
-        my $port = 4711;
+        my ($self, @params) = @_;
+        die "used as object method" if ref $self;
+        my $address = $params[0] || "localhost";
+        my $port = $params[1] || 4711;
+        print("$address, $port\n");
         return Minecraft->new(Connection->new($address, $port));
 }
 
