@@ -91,7 +91,7 @@ sub send{
     
     $self->drain();
     my $command = "$stem($msg)\n";
-    print "last sent = $command";
+    #print "last sent = $command";
     $self->{lastSent} = "$command";
     $self->{sock}->send($command);
 }

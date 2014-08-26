@@ -295,7 +295,7 @@ sub create{
         die "used as object method" if ref $self;
         my $address = $params[0] || "localhost";
         my $port = $params[1] || 4711;
-        print("$address, $port\n");
+        #print("$address, $port\n");
         return Minecraft->new(Connection->new($address, $port));
 }
 
