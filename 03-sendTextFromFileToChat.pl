@@ -24,6 +24,8 @@ if ($numOfArguments == 1){
     while (my $line = <$fileHandle>){
         # print to the perl interpreter standard output (terminal probably)
         print($line);
+        #remove the trailing newline
+        chomp($line);
         # send message to the minecraft chat
         $mc->postToChat($line);
     }
