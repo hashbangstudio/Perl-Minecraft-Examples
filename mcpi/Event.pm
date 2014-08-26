@@ -48,7 +48,6 @@ sub print_info {
 }
 
 sub Hit{
-    print " on hit sub \n";
     my ($self, $x, $y, $z, $face, $entityId) = @_;
     return BlockEvent::->new($HIT, $x, $y, $z, $face, $entityId);
 }
