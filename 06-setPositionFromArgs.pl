@@ -5,27 +5,23 @@ use lib 'mcpi';
 use Minecraft;
 use warnings;
 
-#    First thing you do is create a connection to minecraft
-#    This is like dialling a phone.
-#    It sets up a communication line between your script and the minecraft world
-
-# Create a connection to Minecraft
-# Any communication with the world must use this object
-my $mc = Minecraft::->create();
-
-my $playerPos = $mc->player->getTilePos();
-
-#create a message to send
-my $message = "You are at (".$playerPos->x.", ".$playerPos->y.", ".$playerPos->z.")";
-print $message, "\n";
-# send message to the minecraft chat
-$mc->postToChat($message);
-
-
 #ARGV is a list of the command line arguments given
 my $numOfArguments = @ARGV;
 
 if ($numOfArguments == 2){
+    
+    
+    # Create a connection to Minecraft
+    # Any communication with the world must use this object
+    my $mc = Minecraft::->create();
+
+    my $playerPos = $mc->player->getTilePos();
+
+    #create a message to send
+    my $message = "You are at (".$playerPos->x.", ".$playerPos->y.", ".$playerPos->z.")";
+    print $message, "\n";
+    # send message to the minecraft chat
+    $mc->postToChat($message);
     
     # Set variables for the new position
     my $newXpos = int($ARGV[0]);
@@ -46,6 +42,8 @@ if ($numOfArguments == 2){
 }
 else{
     print("Expected two values arguments for script, but received ".($numOfArguments)."\n");
+    print("Usage: perl script.pl xCoord zCoord\n");
+    print("Example usage: perl script.pl 9 -8\n");
     exit();
 }
 
