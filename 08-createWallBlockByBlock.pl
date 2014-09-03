@@ -1,6 +1,7 @@
 #!/usr/bin/env perl
 
 use strict;
+use Time::HiRes;
 use lib 'mcpi';
 use Minecraft;
 # Require and import the Block module 
@@ -20,7 +21,7 @@ my $blockXposn = $playerPosition->x + 6;
 my $firstColumnX = $blockXposn;
 my $blockYposn = $playerPosition->y + 1;
 my $blockZposn = $playerPosition->z + 6;
-
+my $halfSecInMicroSec = 500 * 1000;
 #For all the values (rows) 1,2,3,4,5,6 do the enclosed code block
 foreach ((1..6)){
     # increase the height of the current row to be built
@@ -34,7 +35,7 @@ foreach ((1..6)){
         # Create a block
         $mc->setBlock($blockXposn, $blockYposn, $blockZposn, DIAMOND_BLOCK);
         # Wait for 0.5 seconds
-        sleep(0.5);
+        Time::HiRes::usleep($halfSecInMicroSec);
     }
 }
 

@@ -1,7 +1,8 @@
 #!/usr/bin/env perl
 
 use strict;
-#import the needed modules fo communication with minecraft world
+use Time::HiRes;
+#import the needed modules for communication with minecraft world
 use lib 'mcpi';
 use Minecraft;
 use Block 'WOOL';
@@ -31,7 +32,7 @@ my $blockXposn = $playerPosition->x + 6;
 my $firstColumnX = $blockXposn;
 my $blockYposn = $playerPosition->y + 1;
 my $blockZposn = $playerPosition->z + 6;
-
+my $halfSecInMicroSec = 500 * 1000;
 # Create a wall using nested for loops
 foreach(1..6){
     # increase the height of the current row to be built
@@ -43,6 +44,6 @@ foreach(1..6){
         print("Creating block at ($blockXposn, $blockYposn, $blockZposn)\n" );
         # Create a block
         $mc->setBlock($blockXposn, $blockYposn, $blockZposn, getWoolBlockWithRandomColour());
-        sleep(0.5);
+        Time::HiRes::usleep($halfSecInMicroSec);
     }
 }

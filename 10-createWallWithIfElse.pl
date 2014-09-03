@@ -1,6 +1,7 @@
 #!/usr/bin/env perl
 
 use strict;
+use Time::HiRes;
 use lib 'mcpi';
 use Minecraft;
 use Block 'DIAMOND_BLOCK', 'GLOWING_OBSIDIAN';
@@ -21,7 +22,7 @@ my $blockZposn   = $playerPosition->z + 6;
 
 my $row = 0;
 my $column = 0;
-
+my $halfSecInMicroSec = 500 * 1000;
 # Create a wall using nested for loops
 foreach ((1..6)){
     # increase the height of the current row to be built
@@ -41,6 +42,6 @@ foreach ((1..6)){
             $mc->setBlock($blockXposn, $blockYposn, $blockZposn, DIAMOND_BLOCK);
         }
         #wait for 0.5 seconds
-        sleep(0.5);
+        Time::HiRes::usleep($halfSecInMicroSec);
     }
 }

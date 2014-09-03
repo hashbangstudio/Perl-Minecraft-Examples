@@ -1,6 +1,7 @@
 #!/usr/bin/env perl
 
 use strict;
+use Time::HiRes;
 use lib 'mcpi';
 use Minecraft;
 use Block;
@@ -21,7 +22,7 @@ my $blockZposn   = $playerPosition->z + 6;
 
 # id of block to create
 my $id = 0;
-
+my $halfSecInMicroSec = 500 * 1000;
 # Create a wall using nested for loops
 foreach ((1..6)){
     # increase the height of the current row to be built
@@ -37,7 +38,7 @@ foreach ((1..6)){
         #$mc->setBlock($blockXposn, $blockYposn, $blockZposn, Block::->new($id));#Alternative method
         $mc->setBlock($blockXposn, $blockYposn, $blockZposn, $id);
         # Wait for 0.5 seconds
-        sleep(0.5);
+        Time::HiRes::usleep($halfSecInMicroSec);
         # increment the id of the block to create
         $id += 1;
     }
