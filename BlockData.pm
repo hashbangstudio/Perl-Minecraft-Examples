@@ -5,7 +5,7 @@ use warnings;
 
 BEGIN {
     require Exporter;
-    
+
     our $VERSION = 0.01;
     our @ISA = qw(Exporter);
     our @Export = qw();
@@ -13,17 +13,17 @@ BEGIN {
     our @EXPORT_OK = qw(blockIdToName getBlockNameFromId
                         tntTypeNameTodId colourNameToId
                         slabTypeNameToId doubleSlabTypeNameToId
-                        sandstoneTypeNameToId leavesTypeNameToId 
-                        woodPlanksTypeNameToId stairsTypeNameToId 
-                        blueFlowerTypeNameToId yellowFlowerTypeNameToId 
+                        sandstoneTypeNameToId leavesTypeNameToId
+                        woodPlanksTypeNameToId stairsTypeNameToId
+                        blueFlowerTypeNameToId yellowFlowerTypeNameToId
                         grassTypeNameToId bedTypeNameToId);
-                                  
+
     our %EXPORT_TAGS = ('ALL' => [qw(blockIdToName getBlockNameFromId
                                      tntTypeNameTodId colourNameToId
                                      slabTypeNameToId doubleSlabTypeNameToId
-                                     sandstoneTypeNameToId leavesTypeNameToId 
-                                     woodPlanksTypeNameToId stairsTypeNameToId 
-                                     blueFlowerTypeNameToId yellowFlowerTypeNameToId 
+                                     sandstoneTypeNameToId leavesTypeNameToId
+                                     woodPlanksTypeNameToId stairsTypeNameToId
+                                     blueFlowerTypeNameToId yellowFlowerTypeNameToId
                                      grassTypeNameToId bedTypeNameToId)]);
 }
 
@@ -101,7 +101,7 @@ Block->NETHER_REACTOR_CORE->{id} =>'NETHER_REACTOR_CORE'
 );
 
 sub blockIdToName{
-    return %blockIdToName; 
+    return %blockIdToName;
 }
 
 sub getBlockNameFromId{
@@ -116,7 +116,7 @@ our %tntTypeNameToId = (
 );
 
 sub tntTypeNameToId{
-    return %tntTypeNameToId; 
+    return %tntTypeNameToId;
 }
 
 #available range 0-15, affects colour of wool block
@@ -142,12 +142,12 @@ our %colourNameToId  = (
 );
 
 sub colourNameToId{
-    return %colourNameToId; 
+    return %colourNameToId;
 }
 
 # only 0-2 seem to do anything for texture
 # 0 to 3 is type, beyond that is decay counter
-# avilablerange 0-15 
+# avilablerange 0-15
 our %leavesTypeNameToId = (
 'oak'   => 0,
 'pine'  => 1,
@@ -157,7 +157,7 @@ our %leavesTypeNameToId = (
 );
 
 sub leavesTypeNameToId{
-    return %leavesTypeNameToId; 
+    return %leavesTypeNameToId;
 }
 
 # only 0-2 seem to o anything
@@ -182,7 +182,7 @@ our %woodPlanksTypeNameToId = (
 );
 
 sub woodPlanksTypeNameToId{
-    return %woodPlanksTypeNameToId; 
+    return %woodPlanksTypeNameToId;
 }
 
 # available 0-15
@@ -211,13 +211,13 @@ our %slabTypeNameToId = (
 );
 
 sub slabTypeNameToId{
-    return %slabTypeNameToId; 
+    return %slabTypeNameToId;
 }
 
 #available 0-15
 # only 1 to 5 does anything
 # 6 and 7 wil use default stone
-# above that just cycles back round 
+# above that just cycles back round
 our %doubleSlabTypeNameToId = (
 'stone'            => 0,
 'sandstone'        => 1,
@@ -233,7 +233,7 @@ our %doubleSlabTypeNameToId = (
 );
 
 sub doubleSlabTypeNameToId{
-    return %doubleSlabTypeNameToId; 
+    return %doubleSlabTypeNameToId;
 }
 
 #available 0 to 2
@@ -244,7 +244,7 @@ our %sandstoneTypeNameToId = (
 );
 
 sub sandstoneTypeNameToId{
-    return %sandstoneTypeNameToId; 
+    return %sandstoneTypeNameToId;
 }
 
 # available 0 to 3
@@ -256,20 +256,20 @@ our %bedTypeNameToId = (
 );
 
 sub bedTypeNameToId{
-    return %bedTypeNameToId; 
+    return %bedTypeNameToId;
 }
 
 # available 0 to 3
 # no effect seemingly
 our %grassTypeNameToId = (
-'shub'        => 0,
+'shrub'        => 0,
 'grass'       => 1,
 'fern'        => 2,
 'biome-shrub' => 3
 );
 
 sub grassTypeNameToId{
-    return %grassTypeNameToId; 
+    return %grassTypeNameToId;
 }
 
 # there appears to be no difference for each value
@@ -278,7 +278,7 @@ our %yellowFlowerTypeNameToId = (
 );
 
 sub yellowFlowerTypeNameToId{
-    return %yellowFlowerTypeNameToId; 
+    return %yellowFlowerTypeNameToId;
 }
 
 # there appears to be no difference for each value
@@ -287,7 +287,7 @@ our %blueFlowerTypeNameToId = (
 );
 
 sub blueFlowerTypeNameToId{
-    return %blueFlowerTypeNameToId; 
+    return %blueFlowerTypeNameToId;
 }
 
 # direction of ascending 0 to 7 available
@@ -304,7 +304,7 @@ our %stairsTypeNameToId = (
 );
 
 sub stairsTypeNameToId{
-    return %stairsTypeNameToId; 
+    return %stairsTypeNameToId;
 }
 
 our %doorTypeNameToId = (
@@ -327,7 +327,7 @@ our %doorTypeNameToId = (
 );
 
 sub doorTypeNameToId{
-    return %doorTypeNameToId; 
+    return %doorTypeNameToId;
 }
 
 END{}
