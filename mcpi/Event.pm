@@ -21,8 +21,8 @@ sub new{
         my $this = shift;
         my $class = ref($this) || $this;
         my($type, $x, $y, $z, $face, $entityId) = @_;
-        my $self = { type => $type, 
-                     posn => Vec3::->new($x, $y, $z), 
+        my $self = { type => $type,
+                     posn => Vec3::->new($x, $y, $z),
                      face => $face, entityId => $entityId,
                      HIT => $HIT};
         bless $self, $class;
@@ -38,13 +38,12 @@ sub print_info {
     if (exists( $sTypeHash{$key})){
         $typeText = $sTypeHash{$key};
     }
-    my $output = sprintf("BlockEvent(%s, %d, %d, %d, %d, %d)",  
-                         $typeText, 
-                         $self->{posn}->x, $self->{posn}->y, $self->{posn}->z, 
+    my $output = sprintf("BlockEvent(%s, %d, %d, %d, %d, %d)",
+                         $typeText,
+                         $self->{posn}->x, $self->{posn}->y, $self->{posn}->z,
                          $self->{face}, $self->{entityId}
                          );
-    print $output;
-    return "";
+    return $output;
 }
 
 sub Hit{
@@ -52,5 +51,5 @@ sub Hit{
     return BlockEvent::->new($HIT, $x, $y, $z, $face, $entityId);
 }
 
-END{}      
+END{}
 1;
